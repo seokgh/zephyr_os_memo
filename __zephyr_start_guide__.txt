@@ -193,7 +193,30 @@ NOTE:
 	nucleo_h743zi
 	stm32h735g_disco
 
+//
+//board file
+//
+seokgh@Ubuntu22 ~/zephyrproject/zephyr/boards/arm/nucleo_h743zi (main) $ tree
+.
+├── arduino_r3_connector.dtsi
+├── board.cmake
+├── doc
+│   ├── img
+│   │   └── nucleo_h743zi.jpg
+│   └── index.rst
+├── Kconfig.board
+├── Kconfig.defconfig
+├── nucleo_h743zi_defconfig
+├── nucleo_h743zi.dts
+├── nucleo_h743zi.yaml
+└── support
+    └── openocd.cfg
 
+3 directories, 10 files
+
+
+
+//
 seokgh@Ubuntu22 ~/zephyrproject $ west boards
 96b_aerocore2
 96b_argonkey
