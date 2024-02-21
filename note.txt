@@ -1,11 +1,14 @@
 ]
 
 //
-//CONFIG_BOARD
+//grep -w "CONFIG_BOARD" * -Rn
 //
 build/zephyr/.config:7:CONFIG_BOARD="nucleo_h743zi"
 build/zephyr/.config:387:CONFIG_BOARD_REVISION=""
 build/zephyr/.config:389:CONFIG_BOARD_NUCLEO_H743ZI=y
+build/zephyr/include/generated/autoconf.h:1:#define CONFIG_BOARD "nucleo_h743zi"
+build/zephyr/misc/generated/configs.c:11:GEN_ABSOLUTE_SYM_KCONFIG(CONFIG_BOARD, 1);
+
 
 //
 //samples/hello_world/src/main.c
