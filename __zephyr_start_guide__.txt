@@ -225,6 +225,17 @@ seokgh@Ubuntu22 ~/zephyrproject/zephyr/boards/arm/nucleo_h743zi (main) $ tree
 How to build your Zephyr app in a standalone folder?
 (Zephyr 개발환경 설치 가이드에서 default로 지정한 Path: ~/zephyrproject/zephyr/ 을 벗어나서, 따로 폴더 만들어서 개발하기)
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+요약하면:
+$ cp -r ~/zephyrproject/zephyr/samples/basic/blinky ~/.		//복제한다
+$ cd ~
+$ source ~/zephyrproject/zephyr/zephyr-env.sh			//터미널 새로 열때마다, 필수
+$ west build -p always -b nucleo_h743zi blinky			//이제 git 으로 따로 관리하면 된다
+$ west flash
+
+
+
+상세한 설명은 이하:
+
 step 1
 -------------------------------------------------------------
 cp -r ~/zephyrproject/zephyr/samples/basic/blinky ~/.
