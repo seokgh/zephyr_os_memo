@@ -1,7 +1,0 @@
-//
-//stm32h7 dts include 관계 (　↓　방향)
-//
-~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h7.dtsi 
-  ~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h743.dtsi
-    ~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h743Xi.dtsi
-
