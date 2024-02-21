@@ -27,3 +27,10 @@ int main(void)
 	printf("Hello World! %s\n", CONFIG_BOARD);  //
 	return 0;
 }
+
+
+
+//
+//Open source version of the STMicroelectronics STLINK Tools
+//
+https://github.com/stlink-org/stlink/blob/testing/doc/tutorial.md
