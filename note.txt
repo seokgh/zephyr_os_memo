@@ -1,10 +1,83 @@
 -------------------------------------------------------------------------
-stm32h7 dts include 관계 (　↓　방향)
+NUCLEO-H743ZI board dts include 관계 (　↓　방향)
 -------------------------------------------------------------------------
 ~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h7.dtsi 
-  ~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h743.dtsi
-    ~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h743Xi.dtsi
-	~/zephyrproject $ vim ./zephyr/boards/arm/nucleo_h743zi/nucleo_h743zi.dts
+	~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h743.dtsi
+		~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h743Xi.dtsi
+
+		~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h743zitx-pinctrl.dtsi
+
+		~/zephyrproject $ vim ./zephyr/boards/arm/nucleo_h743zi/arduino_r3_connector.dtsi
+
+		~/zephyrproject $ vim ./zephyr/boards/arm/nucleo_h743zi/nucleo_h743zi.dts
+
+
+
+ex)
+~/zephyrproject $ cat ./zephyr/boards/arm/nucleo_h743zi/nucleo_h743zi.dts
+
+/dts-v1/;
+#include <st/h7/stm32h743Xi.dtsi>
+#include <st/h7/stm32h743zitx-pinctrl.dtsi>
+#include "arduino_r3_connector.dtsi"
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+/ {
+	model = "STMicroelectronics STM32H743ZI-NUCLEO board";
+	compatible = "st,stm32h743zi-nucleo";
+
+	chosen {
+		zephyr,console = &usart3;
+		zephyr,shell-uart = &usart3;
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,dtcm = &dtcm;
+		zephyr,code-partition = &slot0_partition;
+		zephyr,canbus = &fdcan1;
+	};
+
+	leds: leds {
+		compatible = "gpio-leds";
+		green_led: led_0 {
+			gpios = <&gpiob 0 GPIO_ACTIVE_HIGH>;
+			label = "User LD1";
+		};
+		yellow_led: led_1 {
+			gpios = <&gpioe 1 GPIO_ACTIVE_HIGH>;
+			label = "User LD2";
+		};
+	};
+
+	pwmleds {
+		compatible = "pwm-leds";
+
+		red_pwm_led: red_pwm_led {
+			pwms = <&pwm12 1 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+		};
+	};
+
+	gpio_keys {
+		compatible = "gpio-keys";
+		user_button: button_0 {
+			label = "User";
+			gpios = <&gpioc 13 GPIO_ACTIVE_HIGH>;
+			zephyr,code = <INPUT_KEY_0>;
+		};
+	};
+
+	aliases {
+		led0 = &green_led;
+		led1 = &yellow_led;
+		pwm-led0 = &red_pwm_led;
+		sw0 = &user_button;
+		watchdog0 = &iwdg;
+		die-temp0 = &die_temp;
+		volt-sensor0 = &vref;
+		volt-sensor1 = &vbat;
+	};
+};
+
+
 
 -------------------------------------------------------------------------
 grep -w "CONFIG_BOARD" * -Rn
