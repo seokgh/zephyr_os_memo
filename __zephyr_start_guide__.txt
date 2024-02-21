@@ -221,13 +221,59 @@ seokgh@Ubuntu22 ~/zephyrproject/zephyr/boards/arm/nucleo_h743zi (main) $ tree
 
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+How to build your Zephyr app in a standalone folder?
+(Zephyr 개발환경 설치 가이드에서 default로 지정한 Path: ~/zephyrproject/zephyr/ 을 벗어나서, 따로 폴더 만들어서 개발하기)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+step 1
+-------------------------------------------------------------
+cp -r ~/zephyrproject/zephyr/samples/basic/blinky ~/.
+
+	Here are the more verbose steps:
+		Create a directory for your app
+		Add CMakeLists.txt
+		Create a src subdirectory and add main.c file to it
+
+	That sets up the directory.
+	You now have a folder in your home directory called blinky.
+	Like many zephyr samples, this includes the source files (src folder), a project file (prj.conf), CMake directives (CMakeLists.txt), a readme file (README.rst), and a yaml file (sample.yaml).
+	More complex examples might have a boards directory (boards) that has hardware specific configurations.
 
 
---------------------------------------------------------------------------------
-How to build your Zephyr app in a standalone folder
-(Zephyr 개발환경 설치 가이드에서 지정한 path: ~/zephyrproject/zephyr/ 밖에서 따로 폴더 만들어서 개발하기)
---------------------------------------------------------------------------------
+step 2
+-------------------------------------------------------------
+source ~/zephyrproject/zephyr/zephyr-env.sh
+
+	Each time you begin a new terminal session, source this helper file.
+
+	If you are working with the Nordic fork of Zephyr, simply source the same file from that tree:
+
+		source ~/zephyr-nrf/zephyr/zephyr-env.sh
+
+	* Don’t forget that each time you begin a new terminal session (no matter what tree you’re in) you need to enable your Python virtual environment and set up the build environment.
 
 
+Here’s an example of how I start an ESP32 development session:
+-------------------------------------------------------------
+mike@golioth ~ $ cd ~/blinky
+mike@golioth ~/blinky $ source ~/zephyrproject/.venv/bin/activate						// 개발환경 설치 시, 
+(.venv) mike@golioth ~/blinky $ source ~/zephyrproject/zephyr/zephyr-env.sh					// [Install within virtual environment] 의 step 을 밟으면 이렇게 나온다
+(.venv) mike@golioth ~/blinky $ export ESPRESSIF_TOOLCHAIN_PATH="/home/mike/.espressif/tools/zephyr"		// [Install globally] 은 내가 밟은 step. 크게 상관은 없다.
+(.venv) mike@golioth ~/blinky $ export ZEPHYR_TOOLCHAIN_VARIANT="espressif"
+(.venv) mike@golioth ~/blinky $ west build -b esp32 . -p
+
+Here’s the same process, but for a Nordic-based board.
+-------------------------------------------------------------
+Note two things:
+	I didn’t need to set up the toolchain variables like I did with ESP32, and the binaries for different hardware can be built in the same tree using different toolchains–a powerful perk of using Zephyr.
+
+mike@golioth ~ $ cd ~/blinky											//
+mike@golioth ~/blinky $ source ~/zephyrproject/.venv/bin/activate						//
+(.venv) mike@golioth ~/blinky $ source ~/zephyr-nrf/zephyr/zephyr-env.sh					//
+(.venv) mike@golioth ~/blinky $ west build -b thingy91_nrf9160_ns . -p						//
+
+TIP:
+	The ESP32 example above will not build the blinky app unless you add an esp32.overlay file to configure the &led0 alias that main.c needs to attach to an LED.
+	The Thiny91 doesn’t have this limitation. That particular dev board has an LED included, so &led0 is already specified in the dts file within the Zephyr toolchain.
 
 
