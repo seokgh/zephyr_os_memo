@@ -1,3 +1,19 @@
-CONFIG_BOARD
+]
 
+//
+//CONFIG_BOARD
+//
 build/zephyr/.config:7:CONFIG_BOARD="nucleo_h743zi"
+build/zephyr/.config:387:CONFIG_BOARD_REVISION=""
+build/zephyr/.config:389:CONFIG_BOARD_NUCLEO_H743ZI=y
+
+//
+//samples/hello_world/src/main.c
+//
+#include <stdio.h>
+
+int main(void)
+{
+	printf("Hello World! %s\n", CONFIG_BOARD);  //
+	return 0;
+}
