@@ -1,0 +1,3 @@
+CONFIG_BOARD
+
+build/zephyr/.config:7:CONFIG_BOARD="nucleo_h743zi"
