@@ -5,7 +5,7 @@ NUCLEO-H743ZI board dts include 관계 (　↓　방향)
 	~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h743.dtsi
 		~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h743Xi.dtsi
 
-		~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h743zitx-pinctrl.dtsi
+		~/zephyrproject $ vim ./modules/hal/stm32/dts/st/h7/stm32h743zitx-pinctrl.dtsi
 
 		~/zephyrproject $ vim ./zephyr/boards/arm/nucleo_h743zi/arduino_r3_connector.dtsi
 
