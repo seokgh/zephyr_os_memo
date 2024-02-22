@@ -112,6 +112,8 @@ build:
 
 	$ west build -p always -b nucleo_h743zi samples/hello_world/
 	$ west build -p always -b nucleo_h743zi samples/basic/blinky
+	$ west build -p always -b stm32h747i_disco_m7 samples/basic/blinky	//hp750 board랑 가장 비슷.
+										//nucleo_h743zi 와 stm32h747i_disco_m7 차이점을 좀 파악해봐야 한다
 
 flash:
 -------------------------------
