@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------
 NUCLEO-H743ZI board dts include 관계 (　↓　방향)
 -------------------------------------------------------------------------
-~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h7.dtsi 
+~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h7.dtsi
 	~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h743.dtsi
 		~/zephyrproject $ vim ./zephyr/dts/arm/st/h7/stm32h743Xi.dtsi
 
@@ -14,6 +14,7 @@ NUCLEO-H743ZI board dts include 관계 (　↓　방향)
 
 
 ex)
+-----------------
 ~/zephyrproject $ cat ./zephyr/boards/arm/nucleo_h743zi/nucleo_h743zi.dts
 
 /dts-v1/;
@@ -108,3 +109,33 @@ int main(void)
 //Open source version of the STMicroelectronics STLINK Tools
 //
 https://github.com/stlink-org/stlink/blob/testing/doc/tutorial.md
+
+
+
+
+	leds: leds {
+		compatible = "gpio-leds";
+		green_led: led_0 {
+			/*									*/
+			/*           +---------- pinctrl node, see dts/arm/st/h7/stm32h7.dtsi	*/
+			/*          /								*/
+			/*         v								*/
+			/*									*/
+			gpios = <&gpiob 0 GPIO_ACTIVE_HIGH>;	/* OK, tested on NUCLEO-H743ZI board */
+			//gpios = <&gpiob 14 GPIO_ACTIVE_HIGH>; /* OK, tested on NUCLEO-H743ZI board */
+			//gpios = <&gpioe 1 GPIO_ACTIVE_HIGH>;	/* OK, tested on NUCLEO-H743ZI board */
+			label = "User LD1";
+		};
+		yellow_led: led_1 {
+			gpios = <&gpioe 1 GPIO_ACTIVE_HIGH>;
+			label = "User LD2";
+		};
+
+		/* NOTE:
+		 * 	NUCLEO-H743ZI board: PC1, RMII_MDC pin으로 사용되고 있다
+		 * 	HP750         board: PC1, RTK_LED  pin으로 사용되고 있다
+		*/
+		hp750_rtk_led: led_2 {
+			gpios = <&gpioc 1 GPIO_ACTIVE_HIGH>;
+			label = "HP750 RTK LED";
+
