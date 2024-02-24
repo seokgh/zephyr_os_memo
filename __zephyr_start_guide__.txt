@@ -107,6 +107,9 @@ enter sample directory:
 
 build:
 -------------------------------
+	// ~zephyrproject/ 밖에서 개발을 할 때는 (터미널 새로 열 때마다)한번씩 실행시켜줄 것.
+	source ~/zephyrproject/zephyr/zephyr-env.sh
+
 	west build -p always -b <your-board-name> samples/basic/hello_world
 	west build -p always -b <your-board-name> samples/basic/blinky
 
