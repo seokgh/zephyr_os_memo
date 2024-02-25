@@ -118,6 +118,9 @@ build:
 	$ west build -p always -b stm32h747i_disco_m7 samples/basic/blinky	//hp750 board랑 가장 비슷.
 										//nucleo_h743zi 와 stm32h747i_disco_m7 차이점을 좀 파악해봐야 한다
 
+	$ west build -p always -b hp750 -d _HP750_BUILD_ samples/basic/blinky
+
+
 flash:
 -------------------------------
 	$ west flash
