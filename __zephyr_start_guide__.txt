@@ -130,7 +130,7 @@ flash:
 		NUCLEO-H743ZI 보드에서는 Reset 버튼을 누른 상태에서 이 명령을 실행해야 한다?
 		저 위에 sample 코드를 빌드하면, build 라는 폴더가 생기고,  그 안에서 /build/zephyr/zephyr.hex 라는 파일을 찾아서 flash 한다.
 
-	
+	//flash 할 파일의 directory 지정
 	$ west flash --build-dir _HP750_BUILD_/
 
 
