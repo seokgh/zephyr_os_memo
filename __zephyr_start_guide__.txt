@@ -303,3 +303,11 @@ TIP:
 	The Thiny91 doesn’t have this limitation. That particular dev board has an LED included, so &led0 is already specified in the dts file within the Zephyr toolchain.
 
 
+
+
+--------------------------------------------------------------------------------
+Add custom board
+--------------------------------------------------------------------------------
+
+west build -b custom_board -DBOARD_ROOT=.	//boards 디렉토리가 CMakeLists.txt 파일과 같은 레벨에 있으므로, =. 이면 된다.
+
